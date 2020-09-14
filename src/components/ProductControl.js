@@ -25,12 +25,14 @@ class ProductControl extends React.Component {
         }
       ],
       shoppingCart: [],
-      formVisibleOnPage: false
+      cartVisibleOnPage: false
     };
   }
 
-  viewCart = () => {
-    this.setState({formVisibleOnPage: true});
+  viewCartToggle = () => {
+    this.setState(prevstate => ({
+      cartVisibleOnPage: !prevstate.cartVisibleOnPage
+    }));
   }
 
   handleAddProductToCart = (id) => {
@@ -40,23 +42,23 @@ class ProductControl extends React.Component {
 
   render(){
     let currentlyVisibleState = null;
-    let ViewCartButton = null; 
+    let buttonText = null; 
 
-    if (this.state.formVisibleOnPage) {
+    if (this.state.cartVisibleOnPage) {
       currentlyVisibleState = <ShoppingCart 
-      shoppingList={this.state.shoppingCart}/>
+      shoppingList={this.state.shoppingCart} />
+      buttonText = <button onClick={this.viewCartToggle}>Return to Product List</button>
     } else {
       currentlyVisibleState = <ProductList 
       productList={this.state.productList} 
-      onAddProductToCart={this.handleAddProductToCart} 
-      shoppingCart={this.shoppingCart}/>
-      ViewCartButton = <button onClick={this.viewCart}>View Cart</button>
+      onAddProductToCart={this.handleAddProductToCart} />
+      buttonText = <button onClick={this.viewCartToggle}>View Cart</button>
     }
     
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        {ViewCartButton}
+        {buttonText}
       </React.Fragment>
     );
   };
