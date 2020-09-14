@@ -1,7 +1,7 @@
 import React from "react";
 import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 
 class ProductControl extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class ProductControl extends React.Component {
   }
 
   handleAddProductToCart = (id) => {
-    const newCart = this.state.shoppingCart.push(this.state.productList[id])
+    const newCart = this.state.shoppingCart.concat(this.state.productList[id])
     this.setState({shoppingCart: newCart});
   }
 

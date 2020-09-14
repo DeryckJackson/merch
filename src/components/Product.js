@@ -7,8 +7,6 @@ function Product(props) {
     <React.Fragment>
       <h3>Product Name: {props.name}</h3>
       <h3>Price: {props.price}</h3>
-      <button onClick={() => props.whenAddProductToCart(props.id)}>Add to cart</button>
-      <hr />
     </React.Fragment>
   )
 }
@@ -16,8 +14,7 @@ function Product(props) {
 Product.propTypes = {
   name: PropTypes.string,
   price: PropTypes.string,
-  id: PropTypes.number,
-  whenAddProductToCart: PropTypes.func
+  id: PropTypes.number
 }
 
 export default Product;

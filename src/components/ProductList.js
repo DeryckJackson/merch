@@ -33,6 +33,7 @@ function ProductList(props) {
           name={product.name}
           price={product.price}
           id={product.id} />
+          <button onClick={() => props.whenAddProductToCart(props.id)}>Add to cart</button>
         )
       }
     </React.Fragment >
