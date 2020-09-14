@@ -6,15 +6,15 @@ function ShoppingCart(props) {
   return (
     <React.Fragment>
       <h1>Cart</h1>
-      <hr/>
       {props.shoppingList.map((product) =>
         <Product
           name={product.name}
           price={product.price}
           id={product.id} />
-          
+
         )
       }
+      <hr/>
     </React.Fragment>
   )
 }

@@ -37,27 +37,35 @@ class ProductControl extends React.Component {
 
   handleAddProductToCart = (id) => {
     const newCart = this.state.shoppingCart.concat(this.state.productList[id])
-    this.setState({shoppingCart: newCart});
+    this.setState({shoppingCart: newCart,
+    cartVisibleOnPage: true });
   }
 
   render(){
     let currentlyVisibleState = null;
-    let buttonText = null; 
+    let buttonText = null;
+    let isAddCartButtonVisible = null;
 
     if (this.state.cartVisibleOnPage) {
-      currentlyVisibleState = <ShoppingCart 
-      shoppingList={this.state.shoppingCart} />
+      isAddCartButtonVisible = false;
+      currentlyVisibleState = <ShoppingCart
+      shoppingList={this.state.shoppingCart}
+      addCartButton={isAddCartButtonVisible} />
       buttonText = <button onClick={this.viewCartToggle}>Return to Product List</button>
     } else {
-      currentlyVisibleState = <ProductList 
-      productList={this.state.productList} 
-      onAddProductToCart={this.handleAddProductToCart} />
+      isAddCartButtonVisible = true;
+      currentlyVisibleState = <ProductList
+      productList={this.state.productList}
+      onAddProductToCart={this.handleAddProductToCart}
+      addCartButton={isAddCartButtonVisible} />
       buttonText = <button onClick={this.viewCartToggle}>View Cart</button>
     }
-    
+
     return (
       <React.Fragment>
         {currentlyVisibleState}
+        <br />
+        <br />
         {buttonText}
       </React.Fragment>
     );

@@ -26,22 +26,23 @@ import PropTypes from "prop-types";
 function ProductList(props) {
   return (
     <React.Fragment>
-      <hr />
       {props.productList.map((product) =>
         <Product
           whenAddProductToCart={props.onAddProductToCart}
           name={product.name}
           price={product.price}
-          id={product.id} />
-          <button onClick={() => props.whenAddProductToCart(props.id)}>Add to cart</button>
+          id={product.id}
+          cartButton={props.addCartButton}/>
         )
       }
+      <hr />
     </React.Fragment >
   );
 }
 
 ProductList.propTypes = {
   productList: PropTypes.array.isRequired,
+  addCartButton: PropTypes.bool,
   onAddProductToCart: PropTypes.func
 }
 
