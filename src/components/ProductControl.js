@@ -2,6 +2,7 @@ import React from "react";
 import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
 // import { v4 } from 'uuid';
+import { connect } from 'react-redux';
 
 class ProductControl extends React.Component {
   constructor(props) {
@@ -36,10 +37,18 @@ class ProductControl extends React.Component {
   }
 
   handleAddProductToCart = (id) => {
-    const newCart = this.state.shoppingCart.concat(this.state.productList[id])
-    this.setState({shoppingCart: newCart,
-    cartVisibleOnPage: true });
+    const { dispatch } = this.props;
+    const { id, name, price, } = product;
+    const action = {
+      type: 'ADD_PRODUCT',
+      id: id,
+      names: names,
+      price: price
+    }
+    dispatch(action);
+    this.setState({cartVisibleOnPage: true});
   }
+
 
   render(){
     let currentlyVisibleState = null;
