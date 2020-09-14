@@ -1,25 +1,25 @@
 import React from "react";
 import Product from "./Product";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid';
 
-const masterProductList = [
-  {
-    name: "Ninja Sh%t",
-    price: "$49.99",
-    key: v4()
-  },
-  {
-    name: "More Ninja Sh%t",
-    price: "$59.99",
-    key: v4()
-  },
-  {
-    name: "Kunai",
-    price: "$9.99",
-    key: v4()
-  }
-]
+
+// const masterProductList = [
+//   {
+//     name: "Ninja Sh%t",
+//     price: "$49.99",
+//     key: v4()
+//   },
+//   {
+//     name: "More Ninja Sh%t",
+//     price: "$59.99",
+//     key: v4()
+//   },
+//   {
+//     name: "Kunai",
+//     price: "$9.99",
+//     key: v4()
+//   }
+// ]
 
 
 
@@ -27,19 +27,21 @@ function ProductList(props) {
   return (
     <React.Fragment>
       <hr />
-      {masterProductList.map((product) =>
-        <Product name={product.name}
+      {props.productList.map((product) =>
+        <Product
+          whenAddProductToCart={props.onAddProductToCart}
+          name={product.name}
           price={product.price}
-          key={product.key} 
-          addToCart = {props.addToCart}/>
-      )
+          id={product.id} />
+        )
       }
     </React.Fragment >
   );
 }
 
 ProductList.propTypes = {
-  productList: PropTypes.array
+  productList: PropTypes.array.isRequired,
+  onAddProductToCart: PropTypes.func
 }
 
 export default ProductList;
