@@ -6,7 +6,7 @@ function Product(props) {
 
   if(props.cartButton) {
     button = <button onClick={() =>
-      props.whenAddProductToCart(props.id)}>Add to cart</button>
+      props.whenAddProductToCart({id: props.id, name: props.name, price: props.price})}>Add to cart</button>
   }
 
 

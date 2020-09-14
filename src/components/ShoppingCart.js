@@ -6,21 +6,20 @@ function ShoppingCart(props) {
   return (
     <React.Fragment>
       <h1>Cart</h1>
-      {props.shoppingList.map((product) =>
-        <Product
+      {Object.values(props.shoppingCart).map((product) => {
+        return <Product
           name={product.name}
           price={product.price}
           id={product.id} />
-
-        )
-      }
+        
+      })}
       <hr/>
     </React.Fragment>
   )
 }
 
 ShoppingCart.propTypes = {
-  shoppingCart: PropTypes.array
+  shoppingCart: PropTypes.object
 }
 
 export default ShoppingCart;

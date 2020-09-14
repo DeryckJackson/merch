@@ -3,6 +3,7 @@ import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
 // import { v4 } from 'uuid';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class ProductControl extends React.Component {
   constructor(props) {
@@ -25,7 +26,6 @@ class ProductControl extends React.Component {
           id: 2
         }
       ],
-      shoppingCart: [],
       cartVisibleOnPage: false
     };
   }
@@ -36,13 +36,13 @@ class ProductControl extends React.Component {
     }));
   }
 
-  handleAddProductToCart = (id) => {
+  handleAddProductToCart = (product) => {
     const { dispatch } = this.props;
-    const { id, name, price, } = product;
+    const { id, name, price } = product;
     const action = {
       type: 'ADD_PRODUCT',
       id: id,
-      names: names,
+      name: name,
       price: price
     }
     dispatch(action);
@@ -58,7 +58,7 @@ class ProductControl extends React.Component {
     if (this.state.cartVisibleOnPage) {
       isAddCartButtonVisible = false;
       currentlyVisibleState = <ShoppingCart
-      shoppingList={this.state.shoppingCart}
+      shoppingCart={this.props.shoppingCart}
       addCartButton={isAddCartButtonVisible} />
       buttonText = <button onClick={this.viewCartToggle}>Return to Product List</button>
     } else {
@@ -88,5 +88,17 @@ class ProductControl extends React.Component {
 //     selectedProduct: null
 //   });
 // }
+
+const mapStateToProps = state => {
+  return {
+    shoppingCart: state
+  }
+}
+
+ProductList.propTypes = {
+  shoppingCart: PropTypes.object
+};
+
+ProductControl = connect(mapStateToProps)(ProductControl);
 
 export default ProductControl;
