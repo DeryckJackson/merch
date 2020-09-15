@@ -25,15 +25,16 @@ class ProductControl extends React.Component {
           price: "$9.99",
           id: 2
         }
-      ],
-      cartVisibleOnPage: false
+      ]
     };
   }
 
   viewCartToggle = () => {
-    this.setState(prevstate => ({
-      cartVisibleOnPage: !prevstate.cartVisibleOnPage
-    }));
+    const { dispatch } = this.props;
+    const action = {
+      type: "TOGGLE_CART"
+    }
+    dispatch(action);
   }
 
   handleAddProductToCart = (product) => {
@@ -91,7 +92,8 @@ class ProductControl extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    shoppingCart: state
+    shoppingCart: state,
+    cartVisibleOnPage: state.cartVisibleOnPage
   }
 }
 
